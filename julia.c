@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/14 20:09:27 by root              #+#    #+#             */
-/*   Updated: 2024/07/16 16:00:13 by root             ###   ########.fr       */
+/*   Created: 2024/07/16 13:31:47 by root              #+#    #+#             */
+/*   Updated: 2024/07/17 11:15:05 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	calculate_mandelbrot(t_fractal *fractal)
+void	calculate_julia(t_fractal *fractal)
 {
 	int		i;
 	double	tmp;
 	double	zr;
 	double	zi;
 
-	init_mandelbrot(fractal);
 	i = 0;
 	while (fractal->z.r * fractal->z.r + fractal->z.i * fractal->z.i < 4
 		&& ++i < fractal->max_iter)
@@ -37,7 +36,7 @@ void	calculate_mandelbrot(t_fractal *fractal)
 		color_wrap(i, fractal);
 }
 
-void	mandelbrot(t_fractal *fractal)
+void	julia(t_fractal *fractal)
 {
 	fractal->x1 = 0;
 	while (fractal->x1 < fractal->img.width)
@@ -45,7 +44,13 @@ void	mandelbrot(t_fractal *fractal)
 		fractal->y1 = 0;
 		while (fractal->y1 < fractal->img.height)
 		{
-			calculate_mandelbrot(fractal);
+			fractal->z.r = fractal->xlo
+				+ (fractal->x1 / (double)fractal->img.width)
+				* (fractal->xhi - fractal->xlo);
+			fractal->z.i = fractal->ylo
+				+ (fractal->y1 / (double)fractal->img.height)
+				* (fractal->yhi - fractal->ylo);
+			calculate_julia(fractal);
 			fractal->y1++;
 		}
 		fractal->x1++;
