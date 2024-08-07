@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img01.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:06:46 by root              #+#    #+#             */
-/*   Updated: 2024/07/17 11:16:55 by root             ###   ########.fr       */
+/*   Updated: 2024/08/02 13:25:21 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ t_color	get_color(int iter, t_fractal *fractal)
 	index = fraction * (fractal->gradient_size - 1);
 	intrafraction = (fraction * (fractal->gradient_size - 1)) - index;
 	return (interpolate_color(fractal->gradient[index], fractal->gradient[(index
-				+ 1) % fractal->gradient_size], intrafraction));
+					+ 1) % fractal->gradient_size], intrafraction));
 }
 
 void	refresh(t_fractal *fractal)
 {
-	mlx_clear_window(fractal->mlx, fractal->win);
+	//mlx_clear_window(fractal->mlx, fractal->win);
 	if (fractal->img.img != NULL)
 		mlx_destroy_image(fractal->mlx, fractal->img.img);
 	fractal->img.img = mlx_new_image(fractal->mlx, fractal->img.width,

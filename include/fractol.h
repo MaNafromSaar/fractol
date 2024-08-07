@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:12:35 by root              #+#    #+#             */
-/*   Updated: 2024/07/17 15:22:24 by root             ###   ########.fr       */
+/*   Updated: 2024/07/24 21:03:15 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "minilibx-linux/mlx.h"
+# include "..//minilibx_opengl_20191021/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -70,16 +70,16 @@ typedef struct s_fractal
 }				t_fractal;
 
 // KEYCODES
-# define ESC 65307
-# define UP 65362
-# define DOWN 65364
-# define LEFT 65361
-# define RIGHT 65363
-# define R 114
-# define C 99
-# define Q 113
-# define Y 121
-# define P 112
+# define ESC 53
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define R 15
+# define C 8
+# define Q 12
+# define Y 16
+# define P 35
 
 // MOUSECODES
 # define LEFTCLICK 1

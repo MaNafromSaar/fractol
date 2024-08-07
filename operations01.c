@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations01.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:01:38 by root              #+#    #+#             */
-/*   Updated: 2024/07/17 15:31:51 by root             ###   ########.fr       */
+/*   Updated: 2024/08/02 02:31:39 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,12 @@ static void	move(int keycode, t_fractal *fractal)
 	}
 }
 
-void	print_fractal_state(t_fractal *fractal)
-{
-	printf("x1: %f, x2: %f, y1: %f, y2: %f, xlo: %f, xhi: %f, zoom: %f, color: (%d, %d, %d)\n", fractal->x1, fractal->x2, fractal->y1,
-		fractal->y2, fractal->xlo, fractal->xhi, fractal->zoom,
-		fractal->color.r, fractal->color.g, fractal->color.b);
-}
-
 int	key_event(int keycode, t_fractal *fractal)
 {
 	if (keycode == ESC)
 		handle_exit(fractal);
-	else if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
+	else if (keycode == UP || keycode == DOWN
+		|| keycode == LEFT || keycode == RIGHT)
 		move(keycode, fractal);
 	else if (keycode == R)
 		reset(fractal);
@@ -95,8 +89,6 @@ int	key_event(int keycode, t_fractal *fractal)
 		fractal->max_iter += 20;
 	else if (keycode == Y && fractal->max_iter > 20)
 		fractal->max_iter -= 10;
-	else if (keycode == P)
-		print_fractal_state(fractal);
 	refresh(fractal);
 	return (0);
 }

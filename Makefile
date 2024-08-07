@@ -1,37 +1,36 @@
-NAME		= fractol
+NAME        = fractol #-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
 
-CC			= cc
-INC			= -I ./include/ -I$(MLX_PATH)
-CFLAGS		= -g -Wall -Wextra -Werror $(INC)
-RM			= rm -f
-OBJ_PATH 	= ./obj/
-MLX			= -L$(MLX_PATH) -lmlx -lXext -lX11 -lm -lbsd
-MLX_PATH	= ./include/minilibx-linux/
+CC          = cc -g
+FRAMEWORKS  = -framework OpenGL -framework AppKit
+INC         = -I ./include/ -I$(MLX_PATH)
+CFLAGS      = -g -Wall -Wextra -Werror $(INC)
+RM          = rm -f
+OBJ_PATH    = ./obj/
+MLX         = ./minilibx_opengl_20191021/libmlx.a
+MLX_PATH    = ./minilibx_opengl_20191021/
 
-SRC		= fractol.c \
-		init.c \
-		julia.c \
-		mandelbrot.c \
-		tricorn.c \
-		img01.c \
-		img02.c \
-		operations01.c \
-		operations02.c \
-		utils.c \
+SRC = fractol.c \
+      init.c \
+      julia.c \
+      mandelbrot.c \
+      tricorn.c \
+      img01.c \
+      img02.c \
+      operations01.c \
+      operations02.c \
+      utils.c \
 
-OBJ	= $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 OBJ_FILES = $(addprefix $(OBJ_PATH), $(OBJ))
 
-all: $(NAME)
+all: $(MLX) $(NAME)
 
 $(OBJ_PATH)%.o: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_FILES): $(SRC)	
-
-$(NAME): $(OBJ_FILES)
-	$(CC) $(OBJ_FILES) -o $(NAME) $(MLX)
+$(NAME): $(OBJ_FILES) $(MLX)
+	$(CC) $(FRAMEWORKS) $(OBJ_FILES) -o $(NAME) $(MLX) 
 
 clean:
 	@$(RM) $(OBJ) $(OBJ_FILES)

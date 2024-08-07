@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:02:45 by root              #+#    #+#             */
-/*   Updated: 2024/07/17 15:34:25 by root             ###   ########.fr       */
+/*   Updated: 2024/08/06 20:02:08 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ int	main(int argc, char **argv)
 	mlx_key_hook(fractal->win, key_event, fractal);
 	mlx_hook(fractal->win, 17, 1L << 17, handle_exit, fractal);
 	mlx_loop(fractal->mlx);
+	exit_fractal(fractal);	
 	return (0);
 }
 
 void	choice(char **argv, int argc, t_fractal *fractal)
 {
-	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0) // && argc == 2)
+	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
 		mandelbrot(fractal);
 	else if (ft_strncmp(argv[1], "j", 1) == 0)
 	{

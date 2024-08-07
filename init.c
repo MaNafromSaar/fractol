@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:01:44 by root              #+#    #+#             */
-/*   Updated: 2024/07/17 12:49:16 by root             ###   ########.fr       */
+/*   Updated: 2024/08/02 15:55:18 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_mlx(t_fractal *fractal)
 
 void	init_fractal(t_fractal *fractal, char **argv)
 {
-	fractal->max_iter = 60;
+	fractal->max_iter = 42;
 	fractal->zoom = 1.0;
 	fractal->x1 = 0;
 	fractal->x2 = 0;
@@ -48,6 +48,8 @@ void	init_fractal(t_fractal *fractal, char **argv)
 
 void	init_gradient(t_fractal *fractal)
 {
+	if (fractal->gradient)
+		free(fractal->gradient);
 	fractal->gradient_size = 3;
 	fractal->gradient = malloc(fractal->gradient_size * sizeof(t_color));
 	fractal->gradient[0] = fractal->color;

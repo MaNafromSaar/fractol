@@ -1,3 +1,0 @@
-click to close window -done!
-julia
-mouse position catches zoom

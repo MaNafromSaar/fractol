@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations02.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:02:10 by root              #+#    #+#             */
-/*   Updated: 2024/07/17 15:24:09 by root             ###   ########.fr       */
+/*   Updated: 2024/08/02 02:32:10 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	reset(t_fractal *fractal)
 	fractal->color.r = 20;
 	fractal->color.g = 240;
 	fractal->color.b = 60;
+	fractal->max_iter = 66;
 	init_gradient(fractal);
 }
 

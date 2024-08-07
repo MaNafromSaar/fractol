@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:10:58 by root              #+#    #+#             */
-/*   Updated: 2024/07/17 17:55:48 by root             ###   ########.fr       */
+/*   Updated: 2024/08/02 15:50:10 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ double	ft_atof(char *str)
 	int		sign;
 
 	res = 0;
-	div = 10;
+	div = 1;
 	sign = 1;
 	while (*str)
 	{
@@ -42,9 +42,13 @@ double	ft_atof(char *str)
 			div = 10;
 		else if (*str >= '0' && *str <= '9')
 		{
-			if (div > 1)
+			if (div == 1)
+				res = res * 10 + (*str - '0') / div;
+			else
+			{
+				res += (*str - '0') / div;
 				div *= 10;
-			res = res * 10 + (*str - '0') / div;
+			}
 		}
 		str++;
 	}
@@ -56,21 +60,35 @@ int	exit_fractal(t_fractal *fractal)
 	if (fractal)
 	{
 		if (fractal->img.img && fractal->mlx)
-			mlx_destroy_image(fractal->mlx, fractal->img.img);
-		if (fractal->win && fractal->mlx)
-			mlx_destroy_window(fractal->mlx, fractal->win);
-		if (fractal->mlx)
 		{
-			mlx_destroy_display(fractal->mlx);
-			free(fractal->mlx);
+			mlx_destroy_image(fractal->mlx, fractal->img.img);
+			fractal->img.img = NULL;
+		}
+		if (fractal->win && fractal->mlx)
+		{
+			mlx_destroy_window(fractal->mlx, fractal->win);
+			fractal->win = NULL;
 		}
 		if (fractal->gradient)
+		{
+		// 	free(fractal->gradient->b);
+		// 	free(fractal->gradient->g);
+		// 	free(fractal->gradient->r);
 			free(fractal->gradient);
-		free(fractal);
+			fractal->gradient = NULL;
+		}
+		// if (fractal->mlx)
+		// {
+		// 	free(fractal->mlx);
+		// 	fractal->mlx = NULL;
+		// }
+		if (fractal)
+			free(fractal);
+		fractal = NULL;
 	}
 	exit(0);
-	return (0);
 }
+
 
 int	handle_exit(t_fractal *fractal)
 {
