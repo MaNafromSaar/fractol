@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:02:10 by root              #+#    #+#             */
-/*   Updated: 2024/08/07 22:13:38 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 08:44:29 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	zoom_julia(t_fractal *fractal, double zoom, int x, int y)
 	double	center_y;
 
 	if (fractal == NULL)
-		exit(1);
+		exit_fractal(fractal);
 	if (x == -1000 && y == -1000)
 	{
 		center_x = (fractal->xlo + fractal->xhi) / 2;
@@ -60,7 +60,7 @@ void	zoom_tricorn(t_fractal *fractal, double zoom, int x, int y)
 	double	center_y;
 
 	if (fractal == NULL)
-		exit(1);
+		exit_fractal(fractal);
 	if (x == -1000 && y == -1000)
 	{
 		center_x = (fractal->xlo + fractal->xhi) / 2;

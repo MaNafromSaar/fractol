@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:02:45 by root              #+#    #+#             */
-/*   Updated: 2024/08/07 23:31:35 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 08:56:30 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img.img, 0, 0);
 	mlx_mouse_hook(fractal->win, mouse_event, fractal);
 	mlx_key_hook(fractal->win, key_event, fractal);
-	mlx_hook(fractal->win, 17, 1L << 17, handle_exit, fractal);
+	mlx_hook(fractal->win, 17, 1L << 17, exit_fractal, fractal);
 	mlx_loop(fractal->mlx);
 	exit_fractal(fractal);
 	return (0);

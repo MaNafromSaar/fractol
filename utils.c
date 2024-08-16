@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:10:58 by root              #+#    #+#             */
-/*   Updated: 2024/08/07 17:50:48 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 08:32:46 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,3 @@ int	exit_fractal(t_fractal *fractal)
 	exit(0);
 }
 
-int	handle_exit(t_fractal *fractal)
-{
-	exit_fractal(fractal);
-	return (0);
-}

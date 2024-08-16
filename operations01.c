@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:01:38 by root              #+#    #+#             */
-/*   Updated: 2024/08/07 22:35:54 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 08:38:05 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	zoom(t_fractal *fractal, double zoom, int x, int y)
 	double	center_y;
 
 	if (fractal == NULL)
-		exit(1);
+		exit_fractal(fractal);
 	if (x == -1000 && y == -1000)
 	{
 		center_x = (fractal->xlo + fractal->xhi) / 2;
@@ -72,7 +72,7 @@ static void	move(int keycode, t_fractal *fractal)
 int	key_event(int keycode, t_fractal *fractal)
 {
 	if (keycode == ESC)
-		handle_exit(fractal);
+		exit_fractal(fractal);
 	else if (keycode == UP || keycode == DOWN
 		|| keycode == LEFT || keycode == RIGHT)
 		move(keycode, fractal);
