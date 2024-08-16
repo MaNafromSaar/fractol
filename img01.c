@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:06:46 by root              #+#    #+#             */
-/*   Updated: 2024/08/02 13:25:21 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:39:33 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_color	get_color(int iter, t_fractal *fractal)
 
 void	refresh(t_fractal *fractal)
 {
-	//mlx_clear_window(fractal->mlx, fractal->win);
 	if (fractal->img.img != NULL)
 		mlx_destroy_image(fractal->mlx, fractal->img.img);
 	fractal->img.img = mlx_new_image(fractal->mlx, fractal->img.width,

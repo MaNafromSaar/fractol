@@ -1,6 +1,4 @@
-NAME        = fractol #-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
-
-CC          = cc -g
+NAME        = fractol
 FRAMEWORKS  = -framework OpenGL -framework AppKit
 INC         = -I ./include/ -I$(MLX_PATH)
 CFLAGS      = -g -Wall -Wextra -Werror $(INC)
@@ -42,6 +40,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-#-framework OpenGL -framework AppKit ----- for Apple
-#-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment

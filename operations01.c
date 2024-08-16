@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:01:38 by root              #+#    #+#             */
-/*   Updated: 2024/08/02 02:31:39 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 08:38:05 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	zoom(t_fractal *fractal, double zoom, int x, int y)
 	double	center_y;
 
 	if (fractal == NULL)
-		exit(1);
+		exit_fractal(fractal);
 	if (x == -1000 && y == -1000)
 	{
 		center_x = (fractal->xlo + fractal->xhi) / 2;
@@ -36,7 +36,7 @@ void	zoom(t_fractal *fractal, double zoom, int x, int y)
 	fractal->ylo = center_y - (center_y - fractal->ylo) * zoom;
 	fractal->yhi = center_y + (fractal->yhi - center_y) * zoom;
 	fractal->zoom *= zoom;
-	if (fractal->max_iter * zoom < 150)
+	if (fractal->max_iter * zoom < 150 && fractal->max_iter > 10)
 		fractal->max_iter /= zoom;
 }
 
@@ -47,22 +47,22 @@ static void	move(int keycode, t_fractal *fractal)
 
 	x = (fractal->xhi - fractal->xlo) / 10;
 	y = (fractal->yhi - fractal->ylo) / 10;
-	if (keycode == UP && fractal->yhi + y <= 1.25)
+	if (keycode == UP && fractal->yhi + y <= fractal->yhi + 1)
 	{
 		fractal->ylo -= y;
 		fractal->yhi -= y;
 	}
-	else if (keycode == DOWN && fractal->ylo - y >= -1.25)
+	else if (keycode == DOWN && fractal->ylo - y >= fractal->ylo - 1)
 	{
 		fractal->ylo += y;
 		fractal->yhi += y;
 	}
-	else if (keycode == LEFT && fractal->xlo - x >= -2.5)
+	else if (keycode == LEFT && fractal->xlo - x >= fractal->xlo - 1)
 	{
 		fractal->xlo -= x;
 		fractal->xhi -= x;
 	}
-	else if (keycode == RIGHT && fractal->xhi + x <= 1)
+	else if (keycode == RIGHT && fractal->xhi + x <= fractal->xhi + 1)
 	{
 		fractal->xlo += x;
 		fractal->xhi += x;
@@ -72,7 +72,7 @@ static void	move(int keycode, t_fractal *fractal)
 int	key_event(int keycode, t_fractal *fractal)
 {
 	if (keycode == ESC)
-		handle_exit(fractal);
+		exit_fractal(fractal);
 	else if (keycode == UP || keycode == DOWN
 		|| keycode == LEFT || keycode == RIGHT)
 		move(keycode, fractal);

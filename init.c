@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:01:44 by root              #+#    #+#             */
-/*   Updated: 2024/08/02 15:55:18 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 08:38:06 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	init_gradient(t_fractal *fractal)
 		free(fractal->gradient);
 	fractal->gradient_size = 3;
 	fractal->gradient = malloc(fractal->gradient_size * sizeof(t_color));
+	if (!fractal->gradient)
+		exit_fractal(fractal);
 	fractal->gradient[0] = fractal->color;
 	fractal->gradient[1] = (t_color){fractal->color.g, fractal->color.b,
 		fractal->color.r};

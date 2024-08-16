@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:10:58 by root              #+#    #+#             */
-/*   Updated: 2024/08/02 15:50:10 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 08:32:46 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	if (n == 0)
 		return (0);
-	return ((unsigned char) *s1 - (unsigned char) *s2);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
 double	ft_atof(char *str)
@@ -34,22 +34,14 @@ double	ft_atof(char *str)
 	res = 0;
 	div = 1;
 	sign = 1;
-	while (*str)
+	while (*str && (*str == '-' || *str == '.' || (*str >= '0' && *str <= '9')))
 	{
 		if (*str == '-')
 			sign *= -1;
 		else if (*str == '.')
 			div = 10;
-		else if (*str >= '0' && *str <= '9')
-		{
-			if (div == 1)
-				res = res * 10 + (*str - '0') / div;
-			else
-			{
-				res += (*str - '0') / div;
-				div *= 10;
-			}
-		}
+		else
+			res += (*str - '0') / div;
 		str++;
 	}
 	return (res * sign);
@@ -71,17 +63,9 @@ int	exit_fractal(t_fractal *fractal)
 		}
 		if (fractal->gradient)
 		{
-		// 	free(fractal->gradient->b);
-		// 	free(fractal->gradient->g);
-		// 	free(fractal->gradient->r);
 			free(fractal->gradient);
 			fractal->gradient = NULL;
 		}
-		// if (fractal->mlx)
-		// {
-		// 	free(fractal->mlx);
-		// 	fractal->mlx = NULL;
-		// }
 		if (fractal)
 			free(fractal);
 		fractal = NULL;
@@ -89,9 +73,3 @@ int	exit_fractal(t_fractal *fractal)
 	exit(0);
 }
 
-
-int	handle_exit(t_fractal *fractal)
-{
-	exit_fractal(fractal);
-	return (0);
-}

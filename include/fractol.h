@@ -6,7 +6,7 @@
 /*   By: mnaumann <mnaumann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 20:12:35 by root              #+#    #+#             */
-/*   Updated: 2024/07/24 21:03:15 by mnaumann         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:55:31 by mnaumann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,5 @@ void			init_julia(t_fractal *fractal, char **argv, int argc);
 void			init_tricorn(t_fractal *fractal);
 double			ft_atof(char *str);
 void			choice(char **argv, int argc, t_fractal *fractal);
-int				handle_exit(t_fractal *fractal);
 
 #endif
